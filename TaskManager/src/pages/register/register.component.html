@@ -1,19 +1,13 @@
 
-  <div class="login">
-      <div class="form-login">
+  <div class="register">
+      <div class="form-register">
           <h4>REGISTER</h4>
           <form action="">
               <input type="text" class="form-control m-1" placeholder="First Name">
               <input type="password"  class="form-control m-1" placeholder="LastName">
               <input type="email" class="form-control m-1" placeholder="email">
-              <input type="password"  class="form-control m-1" placeholder="password">
-              <label for="showPassword">
-                  <input
-                  (click)='ShowPassword()'
-                  type="checkbox"
-                  class="form-check-input"
-                  id="showPassword">Show password
-              </label>
+              <input type= "{{show ? 'text' : 'password'}}" class="form-control m-1" placeholder="password">
+              <i (click)='showPassword()' class="fas fa-eye">Show/Hidden password</i>
               <button class="btn btn-block m-1 btn-success">REGISTER</button>
           </form>
           <button class="btn btn-block m-1 btn-secondary"  routerLink="/">LOGIN</button>

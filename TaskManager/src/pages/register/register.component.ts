@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   constructor() { }
-
+  show = false;
   ngOnInit() {
   }
-
+  showPassword() {
+    this.show = !this.show;
+  }
 }
