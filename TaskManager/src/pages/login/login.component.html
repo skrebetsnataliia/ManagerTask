@@ -1,0 +1,26 @@
+<div class="form-login">
+  <h4>LOGIN</h4>
+  <div *ngIf='showMessage' class="text-danger text-uppercase bg-light">Email or password is wrong</div>
+  <form [formGroup]="myGroup" (ngSubmit)="onSubmit()">
+      <input formControlName='email' type="email" class="form-control m-1" placeholder="Enter your email">
+      <ng-container *ngIf="myGroup.controls.email.touched">
+        <div class="text-danger text-uppercase bg-light"
+        *ngIf="myGroup.controls.email.errors?.required">
+          Email is required
+        </div>
+        <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.email.errors?.email">
+          Email is invalid
+        </div>
+      </ng-container>
+      <input formControlName='password' type= "{{show ? 'text' : 'password'}}" class="form-control m-1" placeholder="password">
+      <ng-container *ngIf="myGroup.controls.password.touched">
+        <div class="text-danger text-uppercase bg-light"
+        *ngIf="myGroup.controls.password.errors?.required">
+          Password is required
+        </div>
+      </ng-container>
+      <i (click)='showPassword()' class="fas fa-eye">Show/Hidden password</i>
+      <button  [disabled]="myGroup.invalid" class="btn btn-block m-1 btn-primary">LOGIN</button>
+  </form>
+  <button class="btn btn-block m-1 btn-secondary"  routerLink="/register">REGISTER</button>
+</div>

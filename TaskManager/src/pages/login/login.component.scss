@@ -1,0 +1,23 @@
+.form-login{
+  border-radius: 20px;
+  background:rgba(0, 102, 255, 0.1);
+  padding: 10px;
+}
+h4{
+  font-style: italic;
+  color: rgb(11, 54, 119);
+}
+@media only screen and (min-width: 600px){
+  .form-login{
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+  }
+  }
+  @media only screen and (max-width: 599px){
+    .form-login{
+      width: 90%;
+      margin: auto;
+      margin-top: 10px;
+    }
+    }
