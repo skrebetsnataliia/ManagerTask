@@ -10,7 +10,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class TaskService {
 
-  private  URL = "http://localhost:3000";
+  private  URL = env.environment.API_URL;
   constructor(private http:HttpClient) { }
   getTasks(userId:number): Observable<ITask[]>{
     return this.http.get<ITask[]>(`${this.URL}/tasks?userId=${userId}`)

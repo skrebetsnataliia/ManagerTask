@@ -31,12 +31,13 @@
                 </div>
               </ng-container>
               <input type= "{{show ? 'text' : 'password'}}" formControlName='password' class="form-control m-1" placeholder="password">
+              <div>min length 6</div>
               <ng-container *ngIf="myGroup.controls.password.touched">
                 <div class="text-danger text-uppercase bg-light"
                 *ngIf="myGroup.controls.password.errors?.required">
                 Password is required
                 </div>
-                <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.password.errors?.email">
+                <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.password.errors?.minLength">
                   Password is short
                 </div>
               </ng-container>

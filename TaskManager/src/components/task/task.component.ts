@@ -22,7 +22,8 @@ export class TaskComponent implements OnInit {
   error:string;
   updatedTask:ITask;
   createTask:ITask;
-  shareTask=true;
+  shareTask=false;
+  notShareTask=false
   idUser:number;
   email:string
   ngOnInit() {
@@ -37,8 +38,8 @@ export class TaskComponent implements OnInit {
   }
 
   myGroup = new FormGroup({
-    name: new FormControl(this.taskName, [Validators.required, Validators.maxLength(25)]),
-    description: new FormControl(this.description, [Validators.required, Validators.maxLength(300)])
+    name: new FormControl(this.taskName, [Validators.required]),
+    description: new FormControl(this.description, [Validators.required])
   });
   edit(){
     this.editTask=!this.editTask;
@@ -81,31 +82,32 @@ export class TaskComponent implements OnInit {
 
   sendTask(id:number){
     if(id==0){
-      this.shareTask=false;
-      setTimeout(()=>{this.shareTask=true;}, 5000)
+      this.notShareTask=true;
+      setTimeout(()=>{this.notShareTask=false;}, 3000)
     }
     else{
       this.idUser=id;
+      console.log(this.idUser);
+      let Task={
+        name: this.taskName,
+        description:this.description,
+        userId:this.idUser,
+        author:(JSON.parse(localStorage.getItem("user"))).email
+      }
+      console.log(Task);
+      this.taskServ.createTask(Task).subscribe(
+       res=>{
+        this.toastr.success('Sent');
+        this.router.navigate(['/mytasks']);
+        window.location.reload();
+        this.shareTask=true;
+      setTimeout(()=>{this.shareTask=false;}, 3000)
+       },
+       err=>{
+        this.error = err.message;
+        this.toastr.error(`${this.error}`);
+       }
+      )
     }
-  }
-
-  send(){
-    let Task={
-      name: this.taskName,
-      description:this.description,
-      userId:this.idUser,
-      author:(JSON.parse(localStorage.getItem("user"))).email
-    }
-    console.log(Task);
-    this.taskServ.createTask(Task).subscribe(
-     res=>{
-      this.toastr.success('Sent');
-      this.router.navigate(['/mytasks']);
-     },
-     err=>{
-      this.error = err.message;
-      this.toastr.error(`${this.error}`);
-     }
-    )
   }
 }
