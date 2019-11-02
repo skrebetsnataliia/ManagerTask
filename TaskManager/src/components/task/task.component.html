@@ -1,0 +1,62 @@
+<div class="task">
+  <h3>{{taskName}}</h3>
+  <p>{{description}}</p>
+  <p class="id">{{id}}</p>
+  <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">Delete</button>
+  <span>
+  <select #val>
+      <option disabled value='0'>Share(choose user)</option>
+      <option *ngFor="let item of users" value={{item.id}}>
+        <p>{{item.email}}</p>
+        <p class="id">{{item.id}}</p>
+      </option>
+    </select>
+    <button (click)="sendTask(val.value)" data-toggle="modal" data-target="#myModal_2">Share</button>
+    <div *ngIf="!shareTask" class="text-danger">Please choose user</div>
+   </span>
+  <button  class="btn btn-secondary" (click)="edit()">Edit</button>
+</div>
+<div class="task" *ngIf="editTask">
+    <form [formGroup]="myGroup" (ngSubmit)="onSubmit()">
+        <input formControlName='name'[(ngModel)]="taskName" type="text" class="form-control m-1" placeholder="Name">
+        <ng-container *ngIf="myGroup.controls.name.touched">
+          <div class="text-danger text-uppercase bg-light"
+          *ngIf="myGroup.controls.name.errors?.required">
+            Please enter name
+          </div>
+        </ng-container>
+        <textarea formControlName='description' type="text" [(ngModel)]="description" class="form-control m-1" placeholder="Description"></textarea>
+        <ng-container *ngIf="myGroup.controls.description.touched">
+          <div class="text-danger text-uppercase bg-light"
+          *ngIf="myGroup.controls.description.errors?.required">
+            Please enter description
+          </div>
+        </ng-container>
+        <button class="btn m-1 btn-secondary" (click)="close()">Cancel</button>
+        <button  [disabled]="myGroup.invalid" class="btn m-1 btn-primary">Save</button>
+    </form>
+  </div>
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Do you want to delete this task?
+        </div>
+          <button class="btn btn-danger" data-dismiss="modal" (click)="delete()">Delete</button>
+          <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="shareTask" class="modal" id="myModal_2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Do you want share the task?
+        </div>
+          <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-info" data-dismiss="modal" (click)="send()">Share</button>
+      </div>
+    </div>
+  </div>

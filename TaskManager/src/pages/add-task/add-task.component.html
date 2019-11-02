@@ -1,0 +1,21 @@
+<div class="form">
+<form [formGroup]="myGroup" (ngSubmit)="onSubmit()">
+  <input formControlName='name'[(ngModel)]="taskName" type="text" class="form-control m-1" placeholder="Name">
+  <ng-container *ngIf="myGroup.controls.name.touched">
+    <div class="text-danger text-uppercase bg-light"
+    *ngIf="myGroup.controls.name.errors?.required">
+      Please enter name
+    </div>
+  </ng-container>
+  <textarea formControlName='description' type="text" [(ngModel)]="description" class="form-control m-1" placeholder="Description"></textarea>
+  <ng-container *ngIf="myGroup.controls.description.touched">
+    <div class="text-danger text-uppercase bg-light"
+    *ngIf="myGroup.controls.description.errors?.required">
+      Please enter description
+    </div>
+  </ng-container>
+  <button  [disabled]="myGroup.invalid" class="btn btn-block m-1 btn-primary">Create</button>
+</form>
+<a routerLink="/mytasks"><button class=" btn btn-dark btn-block">Cancel/Home page</button></a>
+</div>
+

@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { RegisterComponent } from 'src/pages/register/register.component';
 import { HomepageComponent } from 'src/pages/homepage/homepage.component';
+import { AddTaskComponent } from 'src/pages/add-task/add-task.component';
+import { AllTaskModule } from 'src/modules/all-task/all-task.module';
+import { AllTaskComponent } from 'src/pages/all-task/all-task.component';
 
 
 const routes: Routes = [ {
@@ -16,6 +19,14 @@ const routes: Routes = [ {
 {
   path: 'mytasks',
   component: HomepageComponent,
+},
+{
+  path: 'addtask',
+  component: AddTaskComponent,
+},
+{
+  path: 'alltask',
+  component: AllTaskComponent,
 }
 ];
 

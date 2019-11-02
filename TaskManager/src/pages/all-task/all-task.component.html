@@ -1,0 +1,8 @@
+
+<a routerLink="/mytasks" class="bg-info">Home page</a>
+
+<div *ngFor="let item of tasks">
+  <h4>{{item.name}}</h4>
+  <p>{{item.description}}</p>
+  <p class="bg-warning">{{item.author || 'My task'}}</p>
+</div>

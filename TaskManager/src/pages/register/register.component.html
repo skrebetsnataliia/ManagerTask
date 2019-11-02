@@ -2,13 +2,46 @@
   <div class="register">
       <div class="form-register">
           <h4>REGISTER</h4>
-          <form action="">
-              <input type="text" class="form-control m-1" placeholder="First Name">
-              <input type="password"  class="form-control m-1" placeholder="LastName">
-              <input type="email" class="form-control m-1" placeholder="email">
-              <input type= "{{show ? 'text' : 'password'}}" class="form-control m-1" placeholder="password">
+          <form [formGroup]="myGroup" (ngSubmit)="onSubmit()">
+              <input formControlName='firstName' type="text" class="form-control m-1" placeholder="First Name">
+              <ng-container *ngIf="myGroup.controls.firstName.touched">
+                <div class="text-danger text-uppercase bg-light"
+                *ngIf="myGroup.controls.firstName.errors?.required">
+                First Name is required
+                </div>
+              </ng-container>
+              <input type="text" formControlName='lastName' class="form-control m-1" placeholder="Last Name">
+              <ng-container *ngIf="myGroup.controls.lastName.touched">
+                <div class="text-danger text-uppercase bg-light"
+                *ngIf="myGroup.controls.lastName.errors?.required">
+                Last Name is required
+                </div>
+              </ng-container>
+              <input type="email" formControlName='email' class="form-control m-1" placeholder="email">
+              <ng-container *ngIf="myGroup.controls.email.touched">
+                <div class="text-danger text-uppercase bg-light"
+                *ngIf="myGroup.controls.email.errors?.required">
+                  Email is required
+                </div>
+                <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.email.errors?.email">
+                  Email is invalid
+                </div>
+                <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.email.errors?.controlEmail">
+                  Email is already exist
+                </div>
+              </ng-container>
+              <input type= "{{show ? 'text' : 'password'}}" formControlName='password' class="form-control m-1" placeholder="password">
+              <ng-container *ngIf="myGroup.controls.password.touched">
+                <div class="text-danger text-uppercase bg-light"
+                *ngIf="myGroup.controls.password.errors?.required">
+                Password is required
+                </div>
+                <div class="text-danger text-uppercase bg-light" *ngIf="myGroup.controls.password.errors?.email">
+                  Password is short
+                </div>
+              </ng-container>
               <i (click)='showPassword()' class="fas fa-eye">Show/Hidden password</i>
-              <button class="btn btn-block m-1 btn-success">REGISTER</button>
+              <button [disabled]="myGroup.invalid" class="btn btn-block m-1 btn-success">REGISTER</button>
           </form>
           <button class="btn btn-block m-1 btn-secondary"  routerLink="/">LOGIN</button>
         </div>

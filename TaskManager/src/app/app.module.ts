@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from 'src/modules/auth/auth.module';
 import { HomepageModule } from 'src/modules/homepage/homepage.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddTaskModule } from 'src/modules/add-task/add-task.module';
+import { AllTaskModule } from 'src/modules/all-task/all-task.module';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +21,11 @@ import { HomepageModule } from 'src/modules/homepage/homepage.module';
     AppRoutingModule,
     AuthModule,
     HomepageModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AddTaskModule,
+    AllTaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
