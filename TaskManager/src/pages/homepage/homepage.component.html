@@ -1,1 +1,10 @@
-<p>homepage works!</p>
+<p>Welcome to your Task!</p>
+<div class="link">
+  <a routerLink="/addtask">Create task</a>
+  <a routerLink="" (click)="logout()">Logout</a>
+  <a routerLink="/alltask">All task</a>
+</div>
+<div *ngFor="let item of tasks">
+  <app-task [taskName]="item.name" [description]="item.description" [id]="item.id"></app-task>
+</div>
+

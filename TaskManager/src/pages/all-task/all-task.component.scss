@@ -1,0 +1,26 @@
+div{
+  max-width: 90%;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  border: 2px solid gray;
+  margin: 5px;
+  flex-direction: column;
+  font-family:"Cosmic Sans MS", cursive, sans-serif;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5%;
+}
+
+a{
+  font-family:"Cosmic Sans MS", cursive, sans-serif;
+  font-size: 18px;
+  margin: 20px;
+  color: black;
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+  display:flex;
+  justify-content: center;
+  border: 2px solid gray;
+}
