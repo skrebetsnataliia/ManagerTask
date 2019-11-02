@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
   providedIn: 'root'
 })
 export class UserService {
-  private  URL = "http://localhost:3000";
+  private  URL = env.environment.API_URL;
   constructor(private http:HttpClient) { }
  getUserByEmail(email:string, password:string): Observable<IUSER[]>{
   console.log(this.http.get<IUSER[]>(`${this.URL}/users?email=${email}&password=${password}`));

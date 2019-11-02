@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       firstName: value.firstName,
       lastName: value.lastName,
       email: value. email,
-      password: value.lastName}
+      password: value.password}
     this.userServ.createUser(user).subscribe(
         (user:IUSER)=>{
           console.log(user)
