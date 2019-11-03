@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
       password: value.password}
     this.userServ.createUser(user).subscribe(
         (user:IUSER)=>{
-          console.log(user)
           localStorage.setItem("user", JSON.stringify(user));
           this.router.navigate(['/mytasks']);
         },

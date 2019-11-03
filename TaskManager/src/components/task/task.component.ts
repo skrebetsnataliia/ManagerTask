@@ -87,14 +87,12 @@ export class TaskComponent implements OnInit {
     }
     else{
       this.idUser=id;
-      console.log(this.idUser);
       let Task={
         name: this.taskName,
         description:this.description,
         userId:this.idUser,
         author:(JSON.parse(localStorage.getItem("user"))).email
       }
-      console.log(Task);
       this.taskServ.createTask(Task).subscribe(
        res=>{
         this.toastr.success('Sent');
